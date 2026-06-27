@@ -1,6 +1,6 @@
 # KC Rail Future website
 
-This package contains a deployable website for a citizen-led Kansas City rail transit thought piece.
+This package contains a static, deployable website for a citizen-led Kansas City rail transit thought piece.
 
 ## Pages
 
@@ -12,39 +12,20 @@ This package contains a deployable website for a citizen-led Kansas City rail tr
 
 The Waldo Extension page uses the uploaded PDF directly as the visual source: each PDF page has been rendered as a 1920 x 1080 PNG and displayed as a fullscreen scroll-snap panel. There are no added titles, callouts, or transcript panels on the Waldo page.
 
-## Backend and secure database
+The Voice Your Support page embeds the provided Google Form directly in the page and includes a fallback link that opens the form in a new tab if the embedded form does not load.
 
-A static-only host can serve the pages, but it cannot securely store form submissions by itself. The support form posts to `/api/support`, which is implemented in `server.js` as a Node/Express backend using a private PostgreSQL database connection.
+## Deployment
 
-Security measures included:
+This version is static-only. You can upload the entire `kc-rail-site` folder to a standard static hosting service such as Netlify, Vercel static hosting, Cloudflare Pages, GitHub Pages, or a traditional web host that serves HTML/CSS/JS files.
 
-- Database credentials stay on the server in environment variables.
-- SQL writes use parameterized queries.
-- Server-side validation enforces full name, ZIP code, email, and the 256-word comment limit.
-- Basic rate limiting reduces abuse.
-- A honeypot field reduces bot spam.
-- Raw IP addresses are not stored; the backend stores a salted HMAC hash for abuse control.
-- Helmet security headers and optional same-origin checking are enabled.
+No custom SQL database, backend server, Node.js runtime, or environment variables are required for this version. Support submissions are collected through the linked Google Form.
 
 ## Local preview
 
-Install Node.js 20 or newer, then run:
+You can preview the site by opening `index.html`, or by serving the folder locally:
 
 ```bash
-npm install
-npm start
+python3 -m http.server 8000
 ```
 
-Open `http://localhost:3000`. Without `DATABASE_URL`, the pages will work, but the support form will return a database-not-configured message.
-
-## Production deployment
-
-1. Create a PostgreSQL database with your hosting provider.
-2. Copy `.env.example` to `.env` or set the same variables in your host dashboard.
-3. Set `DATABASE_URL`, `DATABASE_SSL=true` if your provider requires TLS, `APP_ORIGIN` to your real domain, and a long random `IP_HASH_SECRET`.
-4. Deploy this folder to a Node-capable host such as Render, Railway, Fly.io, Heroku-compatible platforms, a VPS, or any hosting service that supports Node and PostgreSQL.
-5. Run `npm install` and `npm start` as the start command.
-
-## Static-only deployment option
-
-You can upload the HTML/CSS/JS/assets folders to a static host, and all pages except the support form will work. To collect support submissions on a static-only host, replace the form action with a trusted hosted form service or deploy the included backend separately.
+Then open `http://localhost:8000` in your browser.

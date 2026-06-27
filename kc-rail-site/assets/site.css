@@ -109,6 +109,34 @@ h1 {
   background: rgba(255,255,255,.85);
   box-shadow: var(--shadow);
 }
+
+.embed-card {
+  width: min(1100px, calc(100% - 2rem));
+  padding: clamp(1rem, 3vw, 2rem);
+}
+.form-intro {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.google-form-frame {
+  display: block;
+  width: 100%;
+  min-height: 78svh;
+  border: 0;
+  border-radius: 14px;
+  background: #fff;
+}
+.form-fallback {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+.form-fallback a {
+  color: var(--accent);
+  font-weight: 800;
+}
+
 .readable p {
   margin: 0;
   font-size: clamp(1.25rem, 3vw, 2rem);

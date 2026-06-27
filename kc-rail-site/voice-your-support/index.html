@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Voice Your Support | Expanding KC Streetcar</title>
+  <title>Voice Your Support | KC Rail Future</title>
   <meta name="description" content="Support form for expanding rail transit in Kansas City.">
   <link rel="stylesheet" href="../assets/site.css">
   <script defer src="../assets/site.js"></script>
@@ -13,7 +13,7 @@
 <header class="topbar">
   <a class="brand" href="../waldo-extension/" aria-label="Brookside Waldo Rail home">
     <span class="brand-mark" aria-hidden="true"></span>
-    <span>Expanding KC Streetcar</span>
+    <span>KC Rail Future</span>
   </a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
   <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
@@ -31,34 +31,19 @@
   <h1>Voice Your Support</h1>
   <p class="hero-copy">Show your support for expanding rail transit in Kansas City here.</p>
 </section>
-<section class="content-card form-card">
-  <form id="support-form" class="support-form" method="post" action="/api/support" novalidate>
-    <div class="form-grid">
-      <label>
-        <span>Full name</span>
-        <input name="fullName" autocomplete="name" required maxlength="120" placeholder="Jane Doe">
-      </label>
-      <label>
-        <span>ZIP code</span>
-        <input name="zipCode" inputmode="numeric" autocomplete="postal-code" required maxlength="10" pattern="\d{5}(-\d{4})?" placeholder="64113">
-      </label>
-      <label>
-        <span>Email address</span>
-        <input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
-      </label>
-    </div>
-    <label class="wide">
-      <span>Comments <small id="word-count">0 / 256 words</small></span>
-      <textarea name="comments" rows="8" maxlength="2000" data-max-words="256" placeholder="Share why you support expanding rail transit..."></textarea>
-    </label>
-    <label class="hp-field" aria-hidden="true">
-      <span>Website</span>
-      <input name="website" tabindex="-1" autocomplete="off">
-    </label>
-    <p class="privacy-note">Your submission is stored privately for support tracking. Do not include sensitive personal information in your comments.</p>
-    <button class="primary-button" type="submit">Submit Support</button>
-    <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-  </form>
+
+<section class="content-card embed-card" aria-label="Voice Your Support Google Form">
+  <p class="form-intro">Submit your support using the form below.</p>
+  <iframe
+    class="google-form-frame"
+    title="Voice Your Support Google Form"
+    src="https://docs.google.com/forms/d/e/1FAIpQLSd1zVzNIkhtmbzHGfOrzKrl6fftLDnrR1ZiO4uYeV3b-KAvHA/viewform?embedded=true"
+    loading="lazy"
+    marginheight="0"
+    marginwidth="0">Loading…</iframe>
+  <p class="form-fallback">
+    If the form does not load, <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1zVzNIkhtmbzHGfOrzKrl6fftLDnrR1ZiO4uYeV3b-KAvHA/viewform?usp=header" target="_blank" rel="noopener noreferrer">open the Google Form in a new tab</a>.
+  </p>
 </section>
 
 </main>
