@@ -1,4 +1,3 @@
-
 :root {
   --bg: #f7f5ef;
   --paper: #ffffff;
@@ -9,6 +8,7 @@
   --accent-2: #d7eadb;
   --shadow: 0 18px 60px rgba(23, 23, 23, 0.10);
   --radius: 22px;
+  --topbar-height: 64px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -30,7 +30,7 @@ a { color: inherit; }
   gap: 1rem;
   padding: 0.8rem clamp(1rem, 4vw, 3rem);
   border-bottom: 1px solid rgba(23, 23, 23, 0.08);
-  background: rgba(247, 245, 239, 0.88);
+  background: rgba(247, 245, 239, 0.92);
   backdrop-filter: blur(18px);
 }
 .brand {
@@ -72,19 +72,12 @@ body[data-page="support"] .site-nav a[data-page="support"],
 }
 .nav-toggle { display: none; }
 main { min-height: calc(100vh - 10rem); }
-.page-hero, .waldo-hero {
+.page-hero {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
 }
 .page-hero.compact {
   padding: clamp(3rem, 8vw, 6rem) 0 1.25rem;
-}
-.waldo-hero {
-  padding: clamp(3rem, 7vw, 6rem) 0 2rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
-  gap: 2rem;
-  align-items: end;
 }
 .eyebrow {
   margin: 0 0 .75rem;
@@ -107,24 +100,6 @@ h1 {
   color: var(--muted);
   font-size: clamp(1rem, 2vw, 1.2rem);
 }
-.hero-stat {
-  background: var(--ink);
-  color: #fff;
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-}
-.hero-stat strong {
-  display: block;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  line-height: 1;
-  letter-spacing: -0.06em;
-}
-.hero-stat span {
-  display: block;
-  margin-top: .5rem;
-  color: rgba(255,255,255,.78);
-}
 .content-card {
   width: min(920px, calc(100% - 2rem));
   margin: 1rem auto clamp(3rem, 7vw, 6rem);
@@ -142,72 +117,39 @@ h1 {
 }
 .centered-message { text-align: center; }
 .centered-message p { font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 820; }
-.slide-jump {
-  width: min(1120px, calc(100% - 2rem));
-  margin: 0 auto 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .35rem;
+
+/* Waldo PDF page scroller */
+body[data-page="waldo"] {
+  background: #111;
+  overflow: hidden;
 }
-.slide-jump a {
-  width: 2.25rem;
-  height: 2.25rem;
-  display: inline-grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  text-decoration: none;
-  background: rgba(255,255,255,.75);
-  color: var(--muted);
-  font-size: .8rem;
-  font-weight: 740;
+body[data-page="waldo"] .topbar {
+  flex: 0 0 auto;
 }
-.slide-jump a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-.slide-stack {
-  width: min(1120px, calc(100% - 2rem));
-  margin: 0 auto 5rem;
+.pdf-deck {
+  height: calc(100svh - var(--topbar-height));
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y mandatory;
+  background: #111;
+}
+.pdf-slide {
+  min-height: calc(100svh - var(--topbar-height));
   display: grid;
-  gap: clamp(1.25rem, 3vw, 2.25rem);
+  place-items: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: #111;
 }
-.slide-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: clip;
-  box-shadow: var(--shadow);
-  scroll-margin-top: 6rem;
-}
-.slide-meta {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 1rem 1.1rem;
-  border-bottom: 1px solid var(--line);
-}
-.slide-meta span { color: var(--accent); font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
-.slide-meta h2 { margin: 0; font-size: clamp(1.05rem, 2vw, 1.35rem); letter-spacing: -0.03em; }
-.slide-card img {
+.pdf-slide img {
   display: block;
-  width: 100%;
-  height: auto;
-  background: #eee;
+  width: 100vw;
+  height: calc(100svh - var(--topbar-height));
+  object-fit: contain;
+  background: #111;
 }
-.slide-transcript {
-  border-top: 1px solid var(--line);
-  padding: .8rem 1.1rem 1rem;
-}
-.slide-transcript summary {
-  cursor: pointer;
-  color: var(--accent);
-  font-weight: 760;
-}
-.slide-transcript pre {
-  white-space: pre-wrap;
-  word-break: break-word;
-  color: #343434;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: .9rem;
-}
+
 .form-card { max-width: 960px; }
 .support-form { display: grid; gap: 1.2rem; }
 .form-grid {
@@ -286,7 +228,5 @@ input:focus, textarea:focus {
   }
   .site-nav.open { display: flex; }
   .site-nav a { border-radius: 12px; }
-  .waldo-hero { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
-  .slide-meta { align-items: flex-start; flex-direction: column; gap: .35rem; }
 }

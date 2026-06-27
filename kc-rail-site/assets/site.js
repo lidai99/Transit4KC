@@ -1,5 +1,15 @@
-
 (function () {
+  const topbar = document.querySelector('.topbar');
+  function setTopbarHeight() {
+    if (!topbar) return;
+    document.documentElement.style.setProperty('--topbar-height', `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
+  }
+  setTopbarHeight();
+  window.addEventListener('resize', setTopbarHeight);
+  if ('ResizeObserver' in window && topbar) {
+    new ResizeObserver(setTopbarHeight).observe(topbar);
+  }
+
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('#site-nav');
   if (toggle && nav) {

@@ -10,7 +10,7 @@ This package contains a deployable website for a citizen-led Kansas City rail tr
 - `/east-west-extension/`
 - `/voice-your-support/`
 
-The Waldo Extension page is a scrolling web version of the uploaded Brookside & Waldo rail pitch deck. The unrelated hidden/template slides from the original PowerPoint export are not included; the visible rail proposal pages render as slide images with expandable text transcripts for accessibility.
+The Waldo Extension page uses the uploaded PDF directly as the visual source: each PDF page has been rendered as a 1920 x 1080 PNG and displayed as a fullscreen scroll-snap panel. There are no added titles, callouts, or transcript panels on the Waldo page.
 
 ## Backend and secure database
 
