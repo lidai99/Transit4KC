@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "transit4kc",
+  "compatibility_date": "2026-06-29",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "kc-rail-site"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
